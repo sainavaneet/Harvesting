@@ -39,19 +39,62 @@ machine learning models and robotic technology.
 To get started with this frame work, follow these steps:
 
 ``` bash
-
 git clone https://github.com/sainavaneet/Harvesting.git
 
 cd Harvesting/
 
-conda create -n harvest python=3.8.10
-conda activate harvest
-
-pip instal -e .
-
+pip install -r requirements.txt
 ```
 
 ## 🗂 Project Structure
+
+``` bash
+├── base_control
+│   ├── agv_control.py
+│   ├── examples
+│   │   ├── move_6s_back.py
+│   │   ├── move_6s_forward.py
+│   │   ├── move_base.py
+│   │   ├── odom_cal.py
+│   │   └── original.py
+│   ├── gui_control.py
+│   └── __pycache__
+│       └── agv_control.cpython-38.pyc
+├── config
+│   └── vx300s.yaml
+├── harvest.py
+├── images
+│   └── obj_detection.png
+├── index.md
+├── __init__.py
+├── launch
+│   └── robot.launch
+├── object_detection
+│   ├── dataset
+│   │   └── Cucumber.v2i.yolov11.zip
+│   ├── detection_realsenes.py
+│   └── weights
+│       ├── best.pt
+│       └── last.pt
+├── __pycache__
+│   └── var.cpython-38.pyc
+├── README.md
+├── requirements.txt
+├── robot_utils.py
+├── rviz
+│   ├── puppet_left.rviz
+│   └── rviz.rviz
+├── setup.py
+├── sleep.py
+├── transform_co.py
+├── utilities.py
+├── var.py
+└── videos
+    ├── 1.mp4
+    ├── 2.mp4
+    ├── 3.mp4
+    └── 4.mp4
+```
 
 ## Launch
 
@@ -61,4 +104,11 @@ source interbotix_ws/devel.setup.bash
 cd ~/Harvesting/launch/
 
 roslaunch robot.launch use_rviz:=false use_sim:=False # if you need in simulation use True
+```
+
+## Object Detection
+
+Object Detection Files are available in `/object_detection`
+
+``` bash
 ```
