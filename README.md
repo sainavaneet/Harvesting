@@ -1,8 +1,6 @@
 Cucumber harvesting using Object Detecion
 ================
 
-## Introduction
-
 This repository is dedicated to the development of a cucumber harvesting
 system that utilizes custom object detection with `YOLOv11`. After
 detecting cucumbers, we generate specific actions for two types of
@@ -43,7 +41,7 @@ git clone https://github.com/sainavaneet/Harvesting.git
 
 cd Harvesting/
 
-pip install -r requirements.txt
+pip install -e .
 ```
 
 ## 🗂 Project Structure
@@ -108,7 +106,46 @@ roslaunch robot.launch use_rviz:=false use_sim:=False # if you need in simulatio
 
 ## Object Detection
 
-Object Detection Files are available in `/object_detection`
+The object detection files are located in the `/object_detection`
+directory.
 
-``` bash
+By executing the `detection_realsense.py` script, cucumbers can be
+detected. We have designed the algorithm in such a way that it
+determines a stable pose of the cucumber after detecting it, based on a
+predefined threshold.
+
+<img src="images/clipboard-945579712.png" width="537" />
+
+## 🦾TASK
+
+- **`Robot Movement`**: The robot starts at position 1, moves along the
+  path, detects cucumbers, and harvests them.
+
+- **`Detection and Harvesting`**`:` After harvesting cucumbers at
+  position 1, the robot moves to position 2, detects the next cucumber,
+  and proceeds with harvesting. This pattern continues as the robot
+  moves along the track.
+
+- **`Sequential Harvesting`**`:` The robot moves sequentially from
+  positions 1 to 4, harvesting cucumbers at each point along the way.
+
+- **`Reversal of Process`**`:` Once the robot reaches the end of the
+  track, at position 5, it reverses the process and moves back along the
+  same path, harvesting cucumbers from position 6 to 3.
+
+- **`Return to Start`**`:` After completing the harvesting task, the
+  robot returns to its starting position at 9.
+
+![](images/Task.PNG)
+
+The entire task can be executed using the Python script.  
+
+``` python
+python harvest.py
 ```
+
+## 🏋️ Results
+
+## 🆘 Support
+
+For any issues or further questions, please open an issue.
