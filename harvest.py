@@ -49,6 +49,9 @@ class Harvest:
         self.bot.arm.set_ee_pose_components(x=x, y=y, z=z, moving_time=moving_time)
 
 
+    def move_to_start(self):
+        self.base_robot.move_to_start()
+
 
     def operation(self, cucu_id):
 
@@ -90,11 +93,39 @@ class Harvest:
 
         self.place_in_basket()
 
+    def perform_task(self):
+
+        self.operation('cucu1')
+
+        self.move_forward()
+
+        self.operation('cucu2')
+
+        self.operation('cucu3')
+
+        self.move_forward()
+
+        self.operation('cucu4')
+        self.operation('cucu5')
+        
+        self.move_forward()
+
+        self.operation('cucu6')
+        self.operation('cucu7')
+
+        self.move_forward()
+
+        self.operation('cucu8')
+        self.move_forward()
+        self.operation('cucu9')
+
+        self.move_to_start()
+
 
 
 if __name__ == "__main__":
     task = Harvest()
 
-    task.operation('cucu1')
+    task.perform_task()
 
 

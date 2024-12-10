@@ -1,4 +1,4 @@
-from detection_realsenes import ObjectPoseEstimator
+from object_detection.detection_realsenes import ObjectPoseEstimator
 import rospy
 import tf
 from geometry_msgs.msg import PoseStamped

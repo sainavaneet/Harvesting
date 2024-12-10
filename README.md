@@ -39,11 +39,24 @@ machine learning models and robotic technology.
 To get started with this frame work, follow these steps:
 
 ``` bash
+
 git clone https://github.com/sainavaneet/Harvesting.git
 
 cd Harvesting/
 
-pip install -r requirements.txt
+conda create -n harvest python=3.8.10
+conda activate harvest
+pip install pyquaternion
+pip install pyyaml
+pip install rospkg
+pip install pexpect
+pip install opencv-python
+pip install matplotlib
+pip install einops
+pip install packaging
+pip install h5py
+pip install ipython
+
 ```
 
 ## 🗂 Project Structure

@@ -1,0 +1,11 @@
+einops
+h5py
+ipython
+matplotlib
+opencv-python
+packaging
+pexpect
+pyquaternion
+pyyaml
+rospkg
+ultralytics

@@ -1,7 +1,12 @@
 import numpy as np
 import time
 from interbotix_xs_msgs.msg import JointSingleCommand
-from config import *
+from var import *
+import IPython
+e = IPython.embed
+
+
+DT = 0.002
 
 class Utils:
     @staticmethod
@@ -108,3 +113,17 @@ class Utils:
         """
         bot.dxl.robot_torque_enable("group", "arm", True)
         bot.dxl.robot_torque_enable("single", "gripper", True)
+
+    @staticmethod
+    def get_arm_joint_positions(bot):
+        return bot.arm.core.joint_states.position[:6]
+    
+    @staticmethod
+    def move_arms(bot_list, target_pose_list, move_time=1):
+        num_steps = int(move_time / DT)
+        curr_pose_list = [Utils.get_arm_joint_positions(bot) for bot in bot_list]
+        traj_list = [np.linspace(curr_pose, target_pose, num_steps) for curr_pose, target_pose in zip(curr_pose_list, target_pose_list)]
+        for t in range(num_steps):
+            for bot_id, bot in enumerate(bot_list):
+                bot.arm.set_joint_positions(traj_list[bot_id][t], blocking=False)
+            time.sleep(DT)
