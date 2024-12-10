@@ -1,7 +1,0 @@
-README.md
-setup.py
-Harvesting.egg-info/PKG-INFO
-Harvesting.egg-info/SOURCES.txt
-Harvesting.egg-info/dependency_links.txt
-Harvesting.egg-info/requires.txt
-Harvesting.egg-info/top_level.txt
