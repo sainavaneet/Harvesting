@@ -46,16 +46,8 @@ cd Harvesting/
 
 conda create -n harvest python=3.8.10
 conda activate harvest
-pip install pyquaternion
-pip install pyyaml
-pip install rospkg
-pip install pexpect
-pip install opencv-python
-pip install matplotlib
-pip install einops
-pip install packaging
-pip install h5py
-pip install ipython
+
+pip instal -e .
 
 ```
 
