@@ -1,22 +1,36 @@
-# Cucumber harvesting using Object Detecion
+Cucumber harvesting using Object Detecion
+================
 
-This repository is dedicated to the development of a cucumber harvesting system that utilizes custom object detection with `YOLOv11`. After detecting cucumbers, we generate specific actions for two types of robots: the `ViperX 300s` arm robot and an `Automated Guided Vehicle` (AGV) robot.
+This repository is dedicated to the development of a cucumber harvesting
+system that utilizes custom object detection with `YOLOv11`. After
+detecting cucumbers, we generate specific actions for two types of
+robots: the `ViperX 300s` arm robot and an `Automated Guided Vehicle`
+(AGV) robot.
 
-The primary aim of this project is to create a comprehensive `dataset` that captures both the actions performed by the robots and the images taken during the harvesting process. This dataset is a crucial resource for developing and refining algorithms that will enhance future robotic harvesting techniques.
+The primary aim of this project is to create a comprehensive `dataset`
+that captures both the actions performed by the robots and the images
+taken during the harvesting process. This dataset is a crucial resource
+for developing and refining algorithms that will enhance future robotic
+harvesting techniques.
 
-By systematically recording a wide array of interactions and scenarios, we not only improve the efficiency of current systems but also lay a robust foundation for future advancements in agricultural robotics. This initiative represents a significant step forward in automating and optimizing the harvesting process through the integration of advanced machine learning models and robotic technology.
+By systematically recording a wide array of interactions and scenarios,
+we not only improve the efficiency of current systems but also lay a
+robust foundation for future advancements in agricultural robotics. This
+initiative represents a significant step forward in automating and
+optimizing the harvesting process through the integration of advanced
+machine learning models and robotic technology.
 
 ## 🛠️ Prerequisites
 
--   **Ubuntu 20.04** 🐧
+- **Ubuntu 20.04** 🐧
 
--   **Interbotix Packages** 🤖
+- **Interbotix Packages** 🤖
 
--   **Python** 🐍
+- **Python** 🐍
 
--   **ROS** 🤖
+- **ROS** 🤖
 
--   **interbotix_ws : -**
+- **interbotix_ws : -**
 
 ## 🚀 Installation
 
@@ -92,33 +106,51 @@ roslaunch robot.launch use_rviz:=false use_sim:=False # if you need in simulatio
 
 ## Object Detection
 
-The object detection files are located in the `/object_detection` directory.
+The object detection files are located in the `/object_detection`
+directory.
 
-By executing the `detection_realsense.py` script, cucumbers can be detected. We have designed the algorithm in such a way that it determines a stable pose of the cucumber after detecting it, based on a predefined threshold.
+By executing the `detection_realsense.py` script, cucumbers can be
+detected. We have designed the algorithm in such a way that it
+determines a stable pose of the cucumber after detecting it, based on a
+predefined threshold.
 
-<img src="images/clipboard-945579712.png" width="537"/>
+<img src="images/clipboard-945579712.png" width="537" />
 
 ## 🦾TASK
 
--   **`Robot Movement`**: The robot starts at position 1, moves along the path, detects cucumbers, and harvests them.
+- **`Robot Movement`**: The robot starts at position 1, moves along the
+  path, detects cucumbers, and harvests them.
 
--   **`Detection and Harvesting`**`:` After harvesting cucumbers at position 1, the robot moves to position 2, detects the next cucumber, and proceeds with harvesting. This pattern continues as the robot moves along the track.
+- **`Detection and Harvesting`**`:` After harvesting cucumbers at
+  position 1, the robot moves to position 2, detects the next cucumber,
+  and proceeds with harvesting. This pattern continues as the robot
+  moves along the track.
 
--   **`Sequential Harvesting`**`:` The robot moves sequentially from positions 1 to 4, harvesting cucumbers at each point along the way.
+- **`Sequential Harvesting`**`:` The robot moves sequentially from
+  positions 1 to 4, harvesting cucumbers at each point along the way.
 
--   **`Reversal of Process`**`:` Once the robot reaches the end of the track, at position 5, it reverses the process and moves back along the same path, harvesting cucumbers from position 6 to 3.
+- **`Reversal of Process`**`:` Once the robot reaches the end of the
+  track, at position 5, it reverses the process and moves back along the
+  same path, harvesting cucumbers from position 6 to 3.
 
--   **`Return to Start`**`:` After completing the harvesting task, the robot returns to its starting position at 9.
+- **`Return to Start`**`:` After completing the harvesting task, the
+  robot returns to its starting position at 9.
 
 ![](images/Task.PNG)
 
-The entire task can be executed using the Python script.
+The entire task can be executed using the Python script.  
 
 ``` python
 python harvest.py
 ```
 
+## 🎁 Dataset
+
+**`Dataset can be found in the releases.`**
+
 ## 🏋️ Results
+
+[![Results](https://img.youtube.com/vi/E9Sd3xxTBig/0.jpg)](https://www.youtube.com/watch?v=E9Sd3xxTBig)
 
 ## 🆘 Support
 
