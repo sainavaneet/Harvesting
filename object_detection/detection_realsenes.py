@@ -10,7 +10,6 @@ from geometry_msgs.msg import PointStamped
 import os
 from decimal import Decimal, ROUND_HALF_UP
 
-from config import *
 
 class ee_pose:
     def __init__(self):
@@ -30,21 +29,17 @@ class ee_pose:
 
 class ObjectPoseEstimator:
     def __init__(self):
-        rospy.init_node('object_pose_estimator', anonymous=True)
+        # rospy.init_node('object_pose_estimator', anonymous=True)
         self.bridge = CvBridge()
-
-        self.model_path = MODEL_PATH
-        self.model = YOLO(MODEL_PATH).to("cuda")
+        self.model = YOLO("/home/dexweaver/Github/cucumber-harvesting/object_detection/runs/detect/train2/weights/best.pt").to("cuda")
         
-        self.stable_threshold = THR  
+        self.stable_threshold = 20  
         self.last_depth_image = None
         self.color_image = None
 
         self.detection_active = True
 
-        self.intrinsic = INTRINSIC
-
-        self.last_pose = None  
+        self.last_pose = None  # Stores the last detected pose
 
         self.should_exit = False
 
@@ -54,8 +49,8 @@ class ObjectPoseEstimator:
         self.detection_active = True
         self.should_exit = False
         rospy.sleep(1)
-        self.color_sub = rospy.Subscriber(COLOUR_IMAGE_TOPIC, Image, self.color_callback)
-        self.depth_sub = rospy.Subscriber(DEPTH_IMAGE_TOPIC, Image, self.depth_callback)
+        self.color_sub = rospy.Subscriber('/camera/color/image_raw', Image, self.color_callback)
+        self.depth_sub = rospy.Subscriber('/camera/depth/image_rect_raw', Image, self.depth_callback)
         
 
     def shutdown_subscribers(self):
@@ -93,8 +88,14 @@ class ObjectPoseEstimator:
     
         
         self.color_image = self.bridge.imgmsg_to_cv2(msg, "bgr8")
-
-
+        
+        intrinsic = np.array([[605.9666137695312, 0.0, 322.66650390625],
+                              [ 0.0, 605.8338623046875, 248.94570922851562],
+                              [ 0.0, 0.0, 1.0]])
+        
+        # intrinsic = np.array([[908.9498901367188, 0.0, 643.999755859375], 
+        #                       [0.0, 908.7507934570312, 373.4185485839844], 
+        #                       [0.0, 0.0, 1.0]])
         label = "cucumber"  
         results = self.model(self.color_image)
         resized_depth_image = cv2.resize(self.last_depth_image, (self.color_image.shape[1], self.color_image.shape[0]), interpolation=cv2.INTER_NEAREST)
@@ -112,8 +113,8 @@ class ObjectPoseEstimator:
 
 
                 if dist > 0:
-                    Xtemp = dist * (x_center - self.intrinsic[0][2]) / self.intrinsic[0][0]
-                    Ytemp = dist * (y_center - self.intrinsic[1][2]) / self.intrinsic[1][1]
+                    Xtemp = dist * (x_center - intrinsic[0][2]) / intrinsic[0][0]
+                    Ytemp = dist * (y_center - intrinsic[1][2]) / intrinsic[1][1]
                     Ztemp = dist
 
                     theta = 0  

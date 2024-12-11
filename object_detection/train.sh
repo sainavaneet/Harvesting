@@ -1,0 +1,1 @@
+yolo detect train data=/home/dexweaver/Documents/GitHub/cucumber-harvesting/object_detection/dataset/fresh_cucumber/data.yaml epochs=1000 imgsz=640 model=yolo11n.pt

@@ -18,8 +18,6 @@ class Detection():
             pose = self.object_detector.use_stable_pose()
             if pose:
                 rospy.loginfo(f"Detected and stable cucumber pose: {pose}")
-                rospy.loginfo(f"Transforming---------------the pose----------------->>>>>>>")
-                
         if pose is not None:
         
             return pose
@@ -32,6 +30,7 @@ class Detection():
         ee_pose_inverse = np.linalg.inv(ee_pose)
         object_pos_ee = ee_pose_inverse @ obj_pose_array
         object_position_robot = object_pos_ee[:3] / 100
+        rospy.loginfo(f"Detected and stable cucumber pose wrt robot: {object_position_robot}")
         return object_position_robot
 
     def robot_ee_pose(self , bot):

@@ -7,3 +7,10 @@
 
 *.html
 .DS_Store
+
+
+object_detection/dataset
+object_detection/runs
+old/
+
+*.pt
