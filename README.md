@@ -4,7 +4,7 @@ Cucumber harvesting using Object Detecion
 This repository is dedicated to the development of a cucumber harvesting
 system that utilizes custom object detection with `YOLOv11`. After
 detecting cucumbers, we generate specific actions for two types of
-robots: the `ViperX 300s` arm robot and an `Automated Guided Vehicle`
+robots: one is the `ViperX 300s` arm robot and the other is an `Automated Guided Vehicle`
 (AGV) robot.
 
 The primary aim of this project is to create a comprehensive `dataset`
